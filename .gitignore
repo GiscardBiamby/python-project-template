@@ -1,0 +1,80 @@
+# A guide to .gitignore syntax:
+# https://www.atlassian.com/git/tutorials/saving-changes/gitignore
+
+# Created by .ignore support plugin (hsz.mobi)
+.idea/
+.DS_Store
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# compilation and distribution
+__pycache__
+_ext
+.eggs/
+.installed.cfg
+.Python
+*.egg
+*.egg-info
+*.egg-info/
+*.pyc
+*.so
+build/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+FsDet.egg-info
+install/
+lib/
+lib64/
+parts/
+sdist/
+share/python-wheels/
+var/
+wheels/
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Notebooks
+.ipynb_checkpoints/
+.virtual_documents/
+
+# IPython
+profile_default/
+ipython_config.py
+
+# Custom items
+*.ckpt
+*.pkl
+checkpoints/
+junk/
+lightning_logs/
+notebooks/cache/
+notebooks/output/
+tmp/
+wandb/
