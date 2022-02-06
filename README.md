@@ -8,6 +8,7 @@
 2. Rename `./PROJECT_NAME` folder.
 3. Edit `./manifest` file with new project name: `PYTHON_ENV_NAME=PROJECT_NAME`.
 4. Edit `./setup.py` file with new project name and correct URL: `name="PROJECT_NAME"` and `url="https://github.com/USERNAME/PROJECT_NAME/"`.
+5. Edit `./setup.cfg` file with new project name: `known_MYSELF=PROJECT_NAME`
 
 ### Customize `./requirements.txt`
 
