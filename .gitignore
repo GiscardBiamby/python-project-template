@@ -30,7 +30,6 @@ downloads/
 eggs/
 FsDet.egg-info
 install/
-lib/
 lib64/
 parts/
 sdist/
@@ -66,6 +65,11 @@ dmypy.json
 profile_default/
 ipython_config.py
 
+# Lib
+/*/**/lib
+# lib/
+# lib/mmseg/
+
 # Custom items
 *.ckpt
 *.pkl
@@ -76,3 +80,4 @@ notebooks/cache/
 notebooks/output/
 tmp/
 wandb/
+/data/

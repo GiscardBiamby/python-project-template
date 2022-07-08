@@ -23,3 +23,11 @@ This uses Anaconda to create the package, and installs requirements from require
 cd scripts
 ./create_env.sh
 ```
+
+### Update isort path
+
+Update `.vscode/settings.json`, change the setting `python.sortImports.path` to the path of isort that is specific to your conda environment. You can find this out by running `conda activate $PYTHON_ENV_NAME && which isort`.
+
+## Optional / Advanced
+
+Improve vscode performance by excluding folders/files from python lanugage server indexing. Do this by updating the excludes in `pyrightconfig.json`.

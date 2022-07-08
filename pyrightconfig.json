@@ -1,0 +1,56 @@
+{
+    "defineConstant": {
+        "DEBUG": true
+    },
+    // "include": [
+    //     "src"
+    // ],
+    "exclude": [
+        "**/node_modules",
+        "**/__pycache__",
+        "src/experimental",
+        "src/typestubs",
+        "**/work_dirs/**",
+        "**/mmsegmentation/configs/**",
+        "**/mmm/**",
+        "**/tests/**",
+        "**/.mim/**",
+        ".git"
+    ],
+    // "executionEnvironments": [
+    //     {
+    //         "extraPaths": [
+    //             "src/service_libs"
+    //         ],
+    //         "pythonPlatform": "Windows",
+    //         "pythonVersion": "3.5",
+    //         "root": "src/web"
+    //     },
+    //     {
+    //         "extraPaths": [
+    //             "src/backend"
+    //         ],
+    //         "pythonVersion": "3.0",
+    //         "root": "src/sdk"
+    //     },
+    //     {
+    //         "extraPaths": [
+    //             "src/tests/e2e",
+    //             "src/sdk"
+    //         ],
+    //         "root": "src/tests"
+    //     },
+    //     {
+    //         "root": "src"
+    //     }
+    // ],
+    "ignore": [
+        "src/oldstuff"
+    ],
+    "pythonPlatform": "Linux",
+    "pythonVersion": "3.9",
+    "reportMissingImports": true,
+    "reportMissingTypeStubs": false
+    // "stubPath": "src/stubs",
+    // "venv": "env367"
+}

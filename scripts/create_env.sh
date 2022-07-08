@@ -22,6 +22,8 @@ conda info --envs | grep "*"
 ##
 ## Base dependencies
 echo "Installing requirements..."
+# echo "Installing pytorch"
+# conda install pytorch==1.8.1 torchvision==0.9.1 torchaudio==0.8.1 -c pytorch
 pip install --upgrade pip -c ../constraints.txt
 pip install -r ../requirements.txt -c ../constraints.txt
 
