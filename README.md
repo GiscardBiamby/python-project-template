@@ -9,7 +9,7 @@
 3. Edit `./manifest` file with new project name: `PYTHON_ENV_NAME=PROJECT_NAME`.
 4. Edit `./setup.py` file with new project name and correct URL: `name="PROJECT_NAME"` and `url="https://github.com/USERNAME/PROJECT_NAME/"`.
 5. Edit `./setup.cfg` file with new project name: `known_MYSELF=PROJECT_NAME`
-6. Edit './hk3/main.py' file with new project name (in the import statements).
+6. Edit `./PROJECT_NAME/main.py` file with new project name (in the import statements).
 
 ### Customize `./requirements.txt`
 
