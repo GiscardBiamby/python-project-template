@@ -1,29 +1,33 @@
 #!/bin/bash
+set -e
 
 # If you don't use anaconda or miniconda you can replace the relevant environment creation and
 # activation lines with pyenv or whatever system you use to manage python environments.
-source ~/anaconda3/etc/profile.d/conda.sh
+# source ~/anaconda3/etc/profile.d/conda.sh
+source ~/mambaforge/etc/profile.d/conda.sh
+source ~/mambaforge/etc/profile.d/mamba.sh
 source ../manifest
 
 ENV_NAME=$PYTHON_ENV_NAME
 echo "ENV_NAME: ${ENV_NAME}"
 
 ## Remove env if exists:
-conda deactivate && conda env remove --name "${ENV_NAME}"
-rm -rf "/home/${USER}/anaconda3/envs/${ENV_NAME}"
+mamba deactivate && mamba env remove --name "${ENV_NAME}"
+rm -rf "/home/${USER}/mambaforge/envs/${ENV_NAME}"
 
 # Create env:
-conda create --name "${ENV_NAME}" python=="${PYTHON_VERSION}" -y
+mamba create --name "${ENV_NAME}" python=="${PYTHON_VERSION}" -y
 
-conda activate "${ENV_NAME}"
+mamba activate "${ENV_NAME}"
 echo "Current environment: "
-conda info --envs | grep "*"
+mamba info --envs | grep "*"
 
 ##
 ## Base dependencies
 echo "Installing requirements..."
 # echo "Installing pytorch"
-# conda install pytorch==1.8.1 torchvision==0.9.1 torchaudio==0.8.1 -c pytorch
+# mamba install -y pytorch==1.9.0 torchvision==0.10.0 torchaudio==0.9.0 cudatoolkit=11.3 -c pytorch -c conda-forge
+# mamba install pytorch==1.8.1 torchvision==0.9.1 torchaudio==0.8.1 -c pytorch
 pip install --upgrade pip -c ../constraints.txt
 pip install -r ../requirements.txt -c ../constraints.txt
 
@@ -32,7 +36,10 @@ python -m ipykernel install --user --name="${ENV_NAME}"
 # Install jupyter extensions
 jupyter contrib nbextension install --user
 
-pip install -e . -c ../constraints.txt
+## Custom dependencies
+# Move to project root
+pushd ../
+pip install -e . -c ./constraints.txt
 
 # # ## Object Detection Framework(s):
 # pip install mmcv-full -f https://download.openmmlab.com/mmcv/dist/cu113/1.10.1/index.html -c ../constraints.txt
@@ -57,5 +64,5 @@ pip install -e . -c ../constraints.txt
 # popd
 
 # We are done, show the python environment:
-conda list
+mambaconda list
 echo "Done!"
