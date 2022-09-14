@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-# If you don't use anaconda or miniconda you can replace the relevant environment creation and
-# activation lines with pyenv or whatever system you use to manage python environments.
+# If you don't use anaconda  you can replace the relevant environment creation and activation lines
+# with pyenv or whatever system you use to manage python environments.
 # source ~/anaconda3/etc/profile.d/conda.sh
 source ~/mambaforge/etc/profile.d/conda.sh
 source ~/mambaforge/etc/profile.d/mamba.sh
@@ -64,5 +64,5 @@ pip install -e . -c ./constraints.txt
 # popd
 
 # We are done, show the python environment:
-mambaconda list
+mamba list
 echo "Done!"

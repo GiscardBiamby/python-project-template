@@ -17,7 +17,7 @@ Add any dependencies, like pytorch, detectron2, pytorch_lightning, mmf, etc.
 
 ### Setup Python Environment
 
-This uses Anaconda to create the package, and installs requirements from requirements.txt. The environment name is defined in the `./manifest` file.
+This uses mamba (a drop-in replacement for Anaconda) to create the package, and installs requirements from requirements.txt. The environment name is defined in the `./manifest` file.
 
 ```bash
 cd scripts
