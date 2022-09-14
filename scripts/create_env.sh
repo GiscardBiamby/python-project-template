@@ -25,9 +25,9 @@ mamba info --envs | grep "*"
 ##
 ## Base dependencies
 echo "Installing requirements..."
-# echo "Installing pytorch"
+echo "Installing pytorch"
 # mamba install -y pytorch==1.9.0 torchvision==0.10.0 torchaudio==0.9.0 cudatoolkit=11.3 -c pytorch -c conda-forge
-# mamba install pytorch==1.8.1 torchvision==0.9.1 torchaudio==0.8.1 -c pytorch
+mamba install -y pytorch==1.12.1 torchvision cudatoolkit=11.6 cudnn -c pytorch
 pip install --upgrade pip -c ../constraints.txt
 pip install -r ../requirements.txt -c ../constraints.txt
 

@@ -24,7 +24,11 @@ isort==4.3.21 # Version works with nbextensions.
 
 # For notebooks / plotting (don't need when submitting analytic, but could also leave them in):
 ipython
-jupyter_contrib_nbextensions
+## Using the version from the git repo to resolve the "Config option `template_path` not recognized by ..." error messages when running jupyter-lab.
+## https://github.com/ipython-contrib/jupyter_contrib_nbextensions/issues/1529
+# jupyter_contrib_nbextensions
+git+https://github.com/jfbercher/jupyter_latex_envs.git
+git+https://github.com/ipython-contrib/jupyter_contrib_nbextensions.git
 jupyterlab
 matplotlib
 nb-black
@@ -47,6 +51,7 @@ jupyterlab-snippets
 
 
 # ## Torch for CUDA11.x:
+# ## Don't use this section if installing via conda/mamba:
 # --find-links https://download.pytorch.org/whl/cu113/torch_stable.html
 # torch==1.10.1+cu113
 # --find-links https://download.pytorch.org/whl/cu113/torch_stable.html
