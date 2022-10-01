@@ -32,6 +32,18 @@ mamba info --envs | grep "*"
 echo "Installing requirements..."
 echo "Installing pytorch"
 # mamba install -y pytorch==1.9.0 torchvision==0.10.0 torchaudio==0.9.0 cudatoolkit=11.3 -c pytorch -c conda-forge
+
+# If you have trouble installing torch, i.e, package manager installs cpu version, or wrong version,
+# might need to specify channel version, and cuda using this method. Additionally, it could help to
+# search the package repositories to see what packages and build versions are available, using:
+#   `conda search "pytorch[build=*cuda11.1*,version=1.8.1,channel=pytorch]"`
+#
+# mamba install \
+#     "pytorch[build=*cuda11.1*,version=1.8.1,channel=pytorch]" \
+#     "torchvision[build=*_cu111*,version=0.9.1,channel=pytorch]" \
+#     cudatoolkit=11.1 \
+#     -c pytorch -c conda-forge -c anaconda -y
+
 mamba install -y pytorch==1.12.1 torchvision cudatoolkit=11.6 cudnn -c pytorch
 pip install --upgrade pip -c "${SCRIPTS_DIR}/../constraints.txt"
 pip install -r "${SCRIPTS_DIR}/../requirements.txt" -c "${SCRIPTS_DIR}/../constraints.txt"
