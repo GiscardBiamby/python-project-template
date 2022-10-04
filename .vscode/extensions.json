@@ -9,7 +9,7 @@
         "DavidAnson.vscode-markdownlint",
         "donjayamanne.githistory",
         "foxundermoon.shell-format",
-        "Gruntfuggly.todo-tree",
+        // "Gruntfuggly.todo-tree",
         "mechatroner.rainbow-csv",
         "mgesbert.python-path",
         "mhutchie.git-graph",

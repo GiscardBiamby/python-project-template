@@ -3,7 +3,7 @@ set -e
 
 # Get the directory of this script so that we can reference paths correctly no matter which folder
 # the script was launched from:
-SCRIPTS_DIR="$(dirname -- "$(readlink -f -- "$0")")"
+SCRIPTS_DIR="$(builtin cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPTS_DIR}/../manifest"
 
 # If you don't use anaconda  you can replace the relevant environment creation and activation lines
