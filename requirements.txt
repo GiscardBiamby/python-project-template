@@ -8,6 +8,7 @@ ninja
 omegaconf
 opencv-python-headless
 pillow
+polars
 pyyaml
 requests
 setuptools
@@ -26,8 +27,9 @@ isort
 # For notebooks / plotting (don't need when submitting analytic, but could also leave them in):
 ipython
 ipywidgets
-## Using the version from the git repo to resolve the "Config option `template_path` not recognized by ..." error messages when running jupyter-lab.
-## https://github.com/ipython-contrib/jupyter_contrib_nbextensions/issues/1529
+# Using the version from the git repo to resolve the "Config option `template_path` not recognized
+# by ..." error messages when running jupyter-lab.
+# https://github.com/ipython-contrib/jupyter_contrib_nbextensions/issues/1529
 # jupyter_contrib_nbextensions
 git+https://github.com/jfbercher/jupyter_latex_envs.git
 git+https://github.com/ipython-contrib/jupyter_contrib_nbextensions.git
