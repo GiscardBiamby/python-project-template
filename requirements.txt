@@ -14,13 +14,15 @@ requests
 setuptools
 streamlit
 tqdm
+types-Pillow
+types-regex
 urllib3
 wandb
 
 # # For linting / code auto-formatting inside vscode (or other IDE). Should be fine to leave in, these
 # # are small dependencies, but also fine to remove when submiting an analytic:
 black
-flake8
+# flake8
 isort
 # isort==4.3.21 # Version works with nbextensions.
 

@@ -4,6 +4,7 @@
     // List of extensions which should be recommended for users of this workspace.
     "recommendations": [
         "aaron-bond.better-comments",
+        "charliermarsh.ruff",
         "christian-kohler.path-intellisense",
         "codezombiech.gitignore",
         "DavidAnson.vscode-markdownlint",
