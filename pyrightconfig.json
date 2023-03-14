@@ -48,7 +48,7 @@
         "src/oldstuff"
     ],
     "pythonPlatform": "Linux",
-    "pythonVersion": "3.9",
+    "pythonVersion": "3.10",
     "reportMissingImports": true,
     "reportMissingTypeStubs": false
     // "stubPath": "src/stubs",
