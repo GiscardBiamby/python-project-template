@@ -8,14 +8,15 @@
     "exclude": [
         "**/node_modules",
         "**/__pycache__",
+        "**/.virtual_documents",
         "src/experimental",
+        "**/tests/**",
+        ".git",
         "src/typestubs",
         "**/work_dirs/**",
         "**/mmsegmentation/configs/**",
         "**/mmm/**",
-        "**/tests/**",
-        "**/.mim/**",
-        ".git"
+        "**/.mim/**"
     ],
     // "executionEnvironments": [
     //     {
