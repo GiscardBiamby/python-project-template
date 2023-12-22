@@ -1,3 +1,13 @@
+# This file forces pip to stick to certain versions of packages. It does not install them if they
+# aren't needed. Example use case:
+#
+# You install a specific version pytorch with CUDA support when you create the environment, but then
+# you pip install an additional package, such as huggingface or timm, and those package installs
+# remove your pytorch and install another version. Often this can lead to your environment having
+# the wrong pytorch version, or a version without CUDA support. If you add `-c constraints.txt` to
+# all your pip install commands, you can avoid your existing pytorch being over-written. Ex: `pip
+# install timm -c constraints.xt`
+
 # isort==4.3.21
 # nbconvert==5.6.1
 

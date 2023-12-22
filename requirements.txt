@@ -1,18 +1,25 @@
 -c constraints.txt
-cython
-ftfy
-gitup
+cython # Some pip builds use this
+git+https://github.com/wjbmattingly/florida
 isodate
-jsons
+jsons 
+matplotlib
 ninja
+numpy
 omegaconf
 opencv-python-headless
-pillow
+pandas[performance,plot,output-formatting]
+pandas-read-xml
+pillow # Consider installing pillow-simd to speed up pillow operations (image augmentations, etc)
+plotly
 polars
+pysimdjson
 pyyaml
 requests
+scikit-learn
+scipy
+seaborn
 setuptools
-streamlit
 tqdm
 types-Pillow
 types-regex
@@ -22,32 +29,26 @@ wandb
 # # For linting / code auto-formatting inside vscode (or other IDE). Should be fine to leave in, these
 # # are small dependencies, but also fine to remove when submiting an analytic:
 black
-# flake8
+flake8
 isort
-# isort==4.3.21 # Version works with nbextensions.
+ruff
 
-# For notebooks / plotting (don't need when submitting analytic, but could also leave them in):
+# For notebooks / plotting:
 ipython
-ipywidgets
-# Using the version from the git repo to resolve the "Config option `template_path` not recognized
-# by ..." error messages when running jupyter-lab.
-# https://github.com/ipython-contrib/jupyter_contrib_nbextensions/issues/1529
-# jupyter_contrib_nbextensions
-git+https://github.com/jfbercher/jupyter_latex_envs.git
-git+https://github.com/ipython-contrib/jupyter_contrib_nbextensions.git
+# # jupyter-contrib-nbextensions No longer works with jupyter-labn
+# git+https://github.com/ipython-contrib/jupyter_contrib_nbextensions.git
+# See here instead: https://jupyterlab-contrib.github.io/migrate_from_classical.html
 jupyterlab
 matplotlib
-nb-black
+# nb-black
 nbconvert
 nbformat
 numpy
-pandas
+pandas[performance,plot,output-formatting]
 pandas-read-xml
 pandoc
-scikit-learn
-scipy
+polars
 seaborn
-plotly
 jupyterlab_code_formatter
 jupyterlab-lsp
 python-lsp-server[all]
@@ -56,7 +57,7 @@ jupyterlab-snippets
 
 
 
-# ## Torch for CUDA11.x:
+# ## Pytorch (don't need these if it's installed via Conda):
 # ## Don't use this section if installing via conda/mamba:
 # --find-links https://download.pytorch.org/whl/cu113/torch_stable.html
 # torch==1.10.1+cu113

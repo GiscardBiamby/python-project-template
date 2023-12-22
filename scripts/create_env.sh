@@ -50,8 +50,7 @@ pip install -r "${SCRIPTS_DIR}/../requirements.txt" -c "${SCRIPTS_DIR}/../constr
 
 # Make the python environment available for running jupyter kernels:
 python -m ipykernel install --user --name="${ENV_NAME}"
-# Install jupyter extensions
-jupyter contrib nbextension install --user
+
 
 ## Custom dependencies
 # Move to project root
