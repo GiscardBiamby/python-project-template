@@ -4,47 +4,63 @@ set -e
 # Get the directory of this script so that we can reference paths correctly no matter which folder
 # the script was launched from:
 SCRIPTS_DIR="$(builtin cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "${SCRIPTS_DIR}/../manifest"
+PROJ_ROOT="$(realpath "${SCRIPTS_DIR}"/../)"
+
 
 # If you don't use anaconda  you can replace the relevant environment creation and activation lines
 # with pyenv or whatever system you use to manage python environments.
-# source ~/anaconda3/etc/profile.d/conda.sh
-source ~/mambaforge/etc/profile.d/conda.sh
-source ~/mambaforge/etc/profile.d/mamba.sh
-source "${SCRIPTS_DIR}/../manifest"
+if [ -d ~/anaconda3/etc/profile.d ]; then
+    source ~/anaconda3/etc/profile.d/conda.sh
+elif [ -d ~/miniconda/etc/profile.d ]; then
+    source ~/miniconda/etc/profile.d/conda.sh
+elif [ -d ~/mambaforge/etc/profile.d ]; then
+    source ~/mambaforge/etc/profile.d/conda.sh
+    source ~/mambaforge/etc/profile.d/mamba.sh
+fi
 
+source "${SCRIPTS_DIR}/../manifest"
 ENV_NAME=$PYTHON_ENV_NAME
 echo "ENV_NAME: ${ENV_NAME}"
 
 ## Remove env if exists:
-mamba deactivate && mamba env remove --name "${ENV_NAME}"
-rm -rf "${HOME}/mambaforge/envs/${ENV_NAME}"
+set +e
+if [ -d "${HOME}/anaconda3/envs/${ENV_NAME}" ]; then
+    $CONDA_EXE deactivate && conda env remove --name "${ENV_NAME}"
+    rm -rf "${HOME}/anaconda3/envs/${ENV_NAME}"
+elif [ -d "${HOME}/miniconda/envs/${ENV_NAME}" ]; then
+    $CONDA_EXE deactivate && conda env remove --name "${ENV_NAME}"
+    rm -rf "${HOME}/miniconda/envs/${ENV_NAME}"
+elif [ -d "${HOME}/mambaforge/envs/${ENV_NAME}" ]; then
+    $CONDA_EXE deactivate && mamba env remove --name "${ENV_NAME}"
+    rm -rf "${HOME}/mambaforge/envs/${ENV_NAME}"
+fi
+set -e
 
 # Create env:
-mamba create --name "${ENV_NAME}" python=="${PYTHON_VERSION}" -y
+$CONDA_EXE create --name "${ENV_NAME}" python=="${PYTHON_VERSION}" -y
 
-mamba activate "${ENV_NAME}"
+$CONDA_EXE activate "${ENV_NAME}"
 echo "Current environment: "
-mamba info --envs | grep "*"
+$CONDA_EXE info --envs | grep "*"
 
 ##
 ## Base dependencies
 echo "Installing requirements..."
 echo "Installing pytorch"
-# mamba install -y pytorch==1.9.0 torchvision==0.10.0 torchaudio==0.9.0 cudatoolkit=11.3 -c pytorch -c conda-forge
+# $CONDA_EXE install -y pytorch==1.9.0 torchvision==0.10.0 torchaudio==0.9.0 cudatoolkit=11.3 -c pytorch -c conda-forge
 
 # If you have trouble installing torch, i.e, package manager installs cpu version, or wrong version,
 # might need to specify channel version, and cuda using this method. Additionally, it could help to
 # search the package repositories to see what packages and build versions are available, using:
 #   `conda search "pytorch[build=*cuda11.1*,version=1.8.1,channel=pytorch]"`
 #
-# mamba install \
+# $CONDA_EXE install \
 #     "pytorch[build=*cuda11.1*,version=1.8.1,channel=pytorch]" \
 #     "torchvision[build=*_cu111*,version=0.9.1,channel=pytorch]" \
 #     cudatoolkit=11.1 \
 #     -c pytorch -c conda-forge -c anaconda -y
 
-mamba install -y pytorch==1.12.1 torchvision cudatoolkit=11.6 cudnn -c pytorch
+$CONDA_EXE install -y pytorch==1.12.1 torchvision cudatoolkit=11.6 cudnn -c pytorch
 pip install --upgrade pip setuptools wheel -c "${SCRIPTS_DIR}/../constraints.txt"
 pip install -r "${SCRIPTS_DIR}/../requirements.txt" -c "${SCRIPTS_DIR}/../constraints.txt"
 
@@ -80,5 +96,5 @@ pip install -e . -c "${SCRIPTS_DIR}/../constraints.txt"
 # popd
 
 # We are done, show the python environment:
-mamba list
+$CONDA_EXE list
 echo "Done!"
