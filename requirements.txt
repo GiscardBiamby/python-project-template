@@ -2,10 +2,10 @@
 cython # Some pip builds use this
 git+https://github.com/wjbmattingly/florida
 isodate
-jsons 
+jsons
 matplotlib
 ninja
-git+https://github.com/jawah/niquests # possibly best and most full-featured http requests library
+# git+https://github.com/jawah/niquests # possibly best and most full-featured http requests library
 numpy
 omegaconf
 opencv-python-headless
@@ -26,10 +26,11 @@ types-Pillow
 types-regex
 urllib3
 wandb
+wheel
 
 # # For linting / code auto-formatting inside vscode (or other IDE). Should be fine to leave in, these
 # # are small dependencies, but also fine to remove when submiting an analytic:
-black
+black[jupyter]
 flake8
 isort
 ruff
