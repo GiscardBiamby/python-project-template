@@ -1,9 +1,24 @@
 # A guide to .gitignore syntax:
 # https://www.atlassian.com/git/tutorials/saving-changes/gitignore
 
-# Created by .ignore support plugin (hsz.mobi)
+# Virtual Environments
+.venv/
+venv/
+.tox/
+.nox/
+mambaforge/
+.direnv/
+.svn/
+
+# IDE / OS / Package manager
+# .vscode/
 .idea/
 .DS_Store
+*.swp
+*~
+node_modules/
+bower_components/
+*.code-search
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -24,11 +39,12 @@ _ext
 *.egg-info/
 *.pyc
 build/
+_build/
+buck-out/
 develop-eggs/
 dist/
 downloads/
 eggs/
-FsDet.egg-info
 install/
 lib64/
 parts/
@@ -41,43 +57,88 @@ wheels/
 .cache
 .coverage
 .coverage.*
+coverage.xml
 .hypothesis/
-.nox/
 .pytest_cache/
-.tox/
 *.cover
 *.py,cover
 cover/
-coverage.xml
 htmlcov/
 nosetests.xml
+test-results/
+coverage_html_report/
+.nox/
+.tox/
 
-# mypy
+# Linters, type checkers, formatters, etc.
 .mypy_cache/
 .dmypy.json
 dmypy.json
+.ruff_cache
 
-# Notebooks
-.ipynb_checkpoints/
-.virtual_documents/
 
 # IPython
 profile_default/
 ipython_config.py
 
+# Notebooks
+.ipynb_checkpoints/
+.virtual_documents/
+notebooks/**/cache/
+notebooks/**/output/
+
 # Lib
-/*/**/lib
+# /*/**/lib
 # lib/
 # lib/mmseg/
 
 # Custom items
+junk/
+tmp/
+
+# Machine Learning Artifacts (Models, Logs, Outputs)
 *.ckpt
 *.pkl
+*.pth
+*.pt
 checkpoints/
-junk/
+experiments/
 lightning_logs/
-notebooks/cache/
-notebooks/output/
-tmp/
+output/
+outputs/
+results/
+save/
 wandb/
+weights/
+weights_ignore/
+work_dirs/
+
+# Large Data (Often stored elsewhere, e.g., S3)
+# You MUST add your specific data folders if they aren't in Git.
 /data/
+/datasets/
+/coco/
+coco_vanilla/
+train2014/
+val2014/
+train2017/
+val2017/
+
+# Archives, junk, binaries, logs, etc.
+*.log
+*.tar
+*.tar.gz
+*junk*
+
+
+
+
+notes.md
+
+data
+**/split_search/**
+
+# Ignore the folders/files that are copied from PROJ_ROOT into the different docker_XX build roots:
+*/dotfiles
+
+notes.md

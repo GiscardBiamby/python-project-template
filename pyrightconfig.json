@@ -9,14 +9,25 @@
         "**/node_modules",
         "**/__pycache__",
         "**/.virtual_documents",
+        "docs",
         "src/experimental",
         "**/tests/**",
         ".git",
         "src/typestubs",
         "**/work_dirs/**",
-        "**/mmsegmentation/configs/**",
+        // "**/mmsegmentation/configs/**",
         "**/mmm/**",
-        "**/.mim/**"
+        "**/.mim/**",
+        // # mmdetection/build artifacts
+        "**/lib/mmdetection/configs/**",
+        "**/lib/mmdetection/datasets/**",
+        "**/lib/mmdetection/demo/**",
+        "**/lib/mmdetection/mmdet/**",
+        "**/lib/mmdetection/tools/**",
+        "**/lib/mmdetection/.dev_scripts/**",
+        "weights",
+        "work_dirs",
+        "/data",
     ],
     // "executionEnvironments": [
     //     {
@@ -49,7 +60,7 @@
         "src/oldstuff"
     ],
     "pythonPlatform": "Linux",
-    "pythonVersion": "3.10",
+    "pythonVersion": "3.11",
     "reportMissingImports": true,
     "reportMissingTypeStubs": false
     // "stubPath": "src/stubs",

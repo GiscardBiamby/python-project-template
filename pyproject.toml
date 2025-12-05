@@ -1,26 +1,220 @@
-[tool.black]
+[build-system]
+requires = ["setuptools>=68", "wheel",]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "PROJECT_NAME"
+version = "0.0.1"
+description = "Toolkit and experiments for the PROJECT_NAME project."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+authors = [
+    { name = "Giscard Biamby", email = "gbiamby@berkeley.edu" },
+]
+keywords = ["PROJECT_NAME", "machine-learning", "research"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["check-manifest"]
+test = ["coverage"]
+
+[project.urls]
+Homepage = "https://github.com/GiscardBiamby/PROJECT_NAME"
+"Bug Tracker" = "https://github.com/GiscardBiamby/PROJECT_NAME/issues"
+Source = "https://github.com/GiscardBiamby/PROJECT_NAME"
+
+[tool.setuptools.packages.find]
+include = ["PROJECT_NAME*"]
+
+[tool.ruff]
 line-length = 100
-target-version = ['py310']
-include = '\.pyi?$'
-extend-exclude = '''
-# A regex preceded with ^/ will apply only to files and directories
-# in the root of the project.
-^/foo.py  # exclude a file named foo.py in the root of the project (in addition to the defaults)
-'''
-exclude = '''
-/(
-    \.git
-  | \.hg
-  | \.mypy_cache
-  | \.tox
-  | \.venv
-  | _build
-  | buck-out
-  | build
-  | dist
-  | results
-  | save
-  | website
-  | .*\/fb\/.*
-)/
-'''
+target-version = "py311"
+exclude = [
+    ".circleci",
+    ".elasticbeanstalk",
+    # other 'exclude' paths
+    ".hg",
+    ".git",
+    ".ruff_cache",
+    "venv",
+    ".venv",
+    ".tox",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    ".eggs",
+    "*.egg-info",
+    ".vscode",
+    ".pytest_cache",
+    ".nox",
+    ".idea",
+    ".svn",
+    ".mypy_cache",
+    "__pycache__",
+
+    # Coverage / reports
+    "htmlcov", "coverage_html_report", ".coverage*", "nosetests.xml", "coverage.xml",
+    "test-results",       # Added from .gitignore
+
+    # Notebooks & scratch
+    ".ipynb_checkpoints", "notebooks/cache", "notebooks/output", ".virtual_documents",
+
+    # Data / outputs (ML-heavy)
+    # Removed 16 duplicate entries (e.g., outputs, output, results, save, checkpoints, etc.)
+    "output", "outputs", "results", "save",
+    "checkpoints", "weights", "lightning_logs", "work_dirs",
+    "databases", "docs", "static", "website",
+    "experiments", "lightning_logs", "results",
+    "save", "weights", "experiments", "migrations",
+    # leading slashes aren’t meaningful here. Ruff’s exclude uses glob patterns relative to the
+    # project root. To ignore root-only folders, use a relative pattern with a slash, e.g. data/**,
+    # datasets/**, wandb/**. That anchors to the root path segment, whereas a bare data would match
+    # any data anywhere.
+    "datasets/**", "data/**", "wandb/**",
+    "coco/**",
+    "tmp",
+    "junk",
+    "coco_vanilla",
+    "train2014",
+    "val2014",
+    "train2017",
+    "val2017",
+
+    # Docs build artifacts
+    "docs/_build",
+
+    # OS/editor noise
+    ".DS_Store",
+
+    # Project-specific large trees
+    "mambaforge", "node_modules",
+]
+
+[tool.ruff.lint]
+# Enable: I (import-sorting checks (I001–I005)), E/W (pycodestyle), F (pyflakes), B (flake-bugbear),
+# C90 (McCabe complexity), C4 (flake8-comprehensions)
+extend-select = [
+    "I", "E", "W", "F", "B", "C90", "C4",
+    # Experimental:
+    # ANN: flake8-annotations (type-hint hygiene)
+    # D: pydocstyle/flake8-docstrings (docstring style; your existing D10x/D401 ignores still apply)
+    # Q: flake8-quotes (consistent string/inline/doctype quotes)
+    # UP: pyupgrade (modernize syntax; safe auto-fixes)
+    # SIM: flake8-simplify (simpler Pythonic patterns)
+    # ISC: implicit string concat (catches "foo""bar")
+    # TCH: typing-only imports in TYPE_CHECKING blocks
+    # T20: T20 (flake8-print): Flags any print() or pprint() calls (T201, T203). This is fantastic
+    #   for cleaning up code and preventing debug statements from "leaking" into production.
+    "D", "Q", "UP", "SIM", "ISC", "TCH", "T20", "S"
+]
+# Keep the same flake8 intent where Ruff supports it.
+# NOTE: Removed unsupported plugin codes: X100 (not in Ruff), DAR* (darglint), WPS* (wemake).
+# RST*, D* are recognized by Ruff; they’re ignored here to mirror your flake8 ignores.
+ignore = [
+    "E203", "E221", "C901", "C408", "E741", "D100", "D104", "D106", "D401", "D205",
+    "D400", # Rule: first line of a docstring should end with a period.
+    "SIM108", # Rule: it tries to simplify some if statements into ternary operator expressions
+    "TC006", # Rule: it wants you to make the type argument of typing.cast(...) a string.
+]
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+# Ignore `E402` (import violations) in all `__init__.py` files, and in selected subdirectories.
+[tool.ruff.lint.per-file-ignores]
+"**/__init__.py" = ["I", "F401", "F403"]
+"**/tests/*.py" = ["S101"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 18
+
+# Choose exactly one convention:
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"   # or: "google"
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+# Mirror your isort sections (note: custom sections are lowercase here).
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+known-first-party = ["PROJECT_NAME"]
+known-third-party = [
+    "dotenv", "pytz", "youtube_dl", "numpy", "pandas", "wandb", "torch", "mmf",
+    "CLIP", "clip", "pytorch_lightning", "icevision", "timm", "seaborn",
+    "torchvision", "polars",
+]
+extra-standard-library = ["setuptools", "mock"]
+no-lines-before = ["standard-library", "third-party"]
+
+[tool.pylint."MASTER"]
+extension-pkg-allow-list = "numpy"
+ignore-paths = [
+    "^\\.git/", "^\\.hg/", "^\\.svn/", "^\\.ruff_cache/", "^\\.mypy_cache/", "^\\.pytest_cache/",
+    "^\\.tox/", "^\\.nox/", "^\\.venv/", "^venv/", "^\\.vscode/", "^\\.idea/",
+    "^build/", "^dist/", "^_build/", "^buck-out/", "^\\.eggs/", ".*\\.egg-info/",
+    "^htmlcov/", "^coverage_html_report/", "^data/", "^datasets/", "^outputs?/", "^results/",
+    "^save/", "^checkpoints/", "^weights/", "^wandb/", "^lightning_logs/", "^work_dirs/",
+    "^docs/_build/", "^notebooks/cache/", "^notebooks/output/", "^\\.ipynb_checkpoints/",
+    "^coco/", "^experiments/", "^mambaforge/",
+    "^docs/", "^\\.circleci/", "^\\.elasticbeanstalk/", "^databases/", "^static/", "^website/",
+    ".*\\.DS_Store", "^__pycache__/", "^test-results/", "^tmp/", "^junk/",
+    "^coco_vanilla/", "^train2014/", "^val2014/", "^train2017/", "^val2017/", "^node_modules/",
+]
+
+[tool.pylint."TYPECHECK"]
+ignored-modules = ["numpy"]
+ignored-classes = ["numpy"]
+generated-members = ["numpy.*"]
+
+[tool.pylint."BASIC"]
+good-names = ["i", "j", "k", "x", "X", "ex", "Run", "_"]
+
+[tool.pylint."FORMAT"]
+max-line-length = 100
+ignore-long-lines = '^\s*(# )?<?https?://\S+>?$'
+
+[tool.pylint."MESSAGES CONTROL"]
+disable = [ "C0114"]
+
+[tool.pytest.ini_options]
+norecursedirs = [
+    "{{cookiecutter.project_name}}",
+    "hooks",
+    "*.egg",
+    ".eggs",
+    "dist",
+    "build",
+    "docs",
+    ".tox",
+    ".git",
+    "__pycache__",
+    ".hg", ".svn", ".ruff_cache", ".mypy_cache", ".pytest_cache",
+    ".nox", ".venv", "venv", ".vscode", ".idea",
+    "_build", "buck-out", "*.egg-info",
+    "htmlcov", "coverage_html_report", ".coverage*", "nosetests.xml", "coverage.xml",
+    ".ipynb_checkpoints", "notebooks/cache", "notebooks/output", ".virtual_documents",
+    "data/**", "datasets/**", "wandb/**", "outputs", "output", "results", "save",
+    "checkpoints", "weights", "lightning_logs", "work_dirs",
+    "docs/_build", "coco/**", "experiments", "mambaforge",
+    ".circleci", ".elasticbeanstalk", "databases", "static", "website",
+    "migrations", ".DS_Store", "test-results", "tmp", "junk",
+    "coco_vanilla", "train2014", "train2017", "val2017", "val2014", "node_modules",
+]
+addopts = [
+    "--strict-markers",
+    "--tb=short",
+    "--doctest-modules",
+]
+
+[tool.setuptools]
+license-files = ["LICENSE"]

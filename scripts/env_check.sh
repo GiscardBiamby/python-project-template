@@ -16,7 +16,7 @@ set +a
 echo ""
 echo "========================================================================"
 echo "create_env.sh"
-echo "ENV_NAME: ${ENV_NAME}"
+echo "PYTHON_ENV_NAME: ${PYTHON_ENV_NAME}"
 echo "SCRIPTS_DIR: ${SCRIPTS_DIR}"
 echo "PROJ_ROOT: ${PROJ_ROOT}"
 echo "CONDA_DIR: ${CONDA_DIR}"

@@ -21,7 +21,6 @@
 ├── manifest
 ├── README.md
 ├── requirements.txt
-├── setup.cfg
 ├── setup.py
 ```
 
@@ -62,6 +61,10 @@ PROJECT_NAME/
         └── timm
         └── ...
 ├── LICENSE
+├── notebooks
+├── PROJECT_NAME
+│   ├── __init__.py
+│   └── main.py
 ...
 
 ```

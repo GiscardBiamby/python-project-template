@@ -1,52 +1,33 @@
 -c constraints.txt
-cython # Some pip builds use this
 git+https://github.com/wjbmattingly/florida
 isodate
 jsons
-matplotlib
 ninja
-# git+https://github.com/jawah/niquests # possibly best and most full-featured http requests library
-numpy
+# * git+https://github.com/jawah/niquests # possibly best and most full-featured http requests library
 omegaconf
 opencv-python-headless
-pandas[performance,plot,output-formatting]
-pandas-read-xml
 pillow # Consider installing pillow-simd to speed up pillow operations (image augmentations, etc)
 plotly
 polars
 pysimdjson
 pyyaml
 requests
-scikit-learn
-scipy
 seaborn
-setuptools
 tqdm
 types-Pillow
 types-regex
 urllib3
 wandb
-wheel
-
-# # For linting / code auto-formatting inside vscode (or other IDE). Should be fine to leave in, these
-# # are small dependencies, but also fine to remove when submiting an analytic:
-black[jupyter]
-flake8
-isort
-ruff
-
-# For notebooks / plotting:
+# * For notebooks / plotting:
+ipykernel
 ipython
-# # jupyter-contrib-nbextensions No longer works with jupyter-labn
-# git+https://github.com/ipython-contrib/jupyter_contrib_nbextensions.git
-# See here instead: https://jupyterlab-contrib.github.io/migrate_from_classical.html
+# * jupyter-contrib-nbextensions No longer works with jupyter-lab
+# * git+https://github.com/ipython-contrib/jupyter_contrib_nbextensions.git
+# * See here instead: https://jupyterlab-contrib.github.io/migrate_from_classical.html
 jupyterlab
-matplotlib
-# nb-black
 nbconvert
 nbformat
 numpy
-pandas[performance,plot,output-formatting]
 pandas-read-xml
 pandoc
 polars
@@ -56,13 +37,6 @@ jupyterlab-lsp
 python-lsp-server[all]
 jlab-enhanced-cell-toolbar
 jupyterlab-snippets
+# * For linting / code auto-formatting inside vscode (or other IDE).
+ruff
 
-
-
-# ## Pytorch (don't need these if it's installed via Conda):
-# ## Don't use this section if installing via conda/mamba:
-# --find-links https://download.pytorch.org/whl/cu113/torch_stable.html
-# torch==1.10.1+cu113
-# --find-links https://download.pytorch.org/whl/cu113/torch_stable.html
-# torchvision==0.11.2+cu113
-# --find-links https://download.pytorch.org/whl/cu113/torch_stable.html
