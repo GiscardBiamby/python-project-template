@@ -18,6 +18,10 @@ types-Pillow
 types-regex
 urllib3
 wandb
+# * pytorch
+torch==2.9.0
+torchvision==0.24.0
+torchaudio==2.9.0
 # * For notebooks / plotting:
 ipykernel
 ipython
